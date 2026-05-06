@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+	<style>
+  	body{
+		font-family: 'Lexend', sans-serif;
+        text-align: center;
+        position: absolute;
+		top: 39%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+  	}
+    div{
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 10px;
+        width: 400px;
+        margin: auto;
+    }
+    input,select,button{
+        font-family: 'Lexend', sans-serif;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    </style>
+</head>
+
+<body>
+
+ 
+    <div class="form-container">
+        <h1>Login Form</h1>
+        <form>
+
+             <label for="username">Username</label>
+             <br>
+            <input type="text" id="username" placeholder="Username" >
+            <br>
+            <br>
+            <label for="password">Password</label>
+            <br>
+            <input type="password" id="password" placeholder="Password" >
+            <br>
+            <br>
+            <input type="checkbox" id=box1 name="checkbox" value="remember">
+			<label class="option-label">Remember me?</label>
+            <br>
+            <p id="lockout-msg" style="color: rgb(95, 29, 29); font-size: 14px; display: none;">Login Unavailable, try again later.</p>
+            <br>
+            <button type="button" onclick="doLogin()">Submit</button>
+            <input type="reset" value="Reset">
+            <br>
+            <p style="color: rgb(53, 53, 110); text-decoration: underline;" >Forgot Password / Username?</p>
+
+        </form>
+    </div>
+    <script>
+        var CorrectUser= "DamienFrancisco";
+        var CorrectPassword= "Damien123";
+            
+
+        var attempts= 0;
+        var maxattempts= 3;
+        function doLogin() {
+            var username= document.getElementById("username").value;
+            var password= document.getElementById("password").value;
+            if (attempts >= maxattempts) {
+                alert("Too many failed attempts. Please try again later.");
+                document.getElementById("lockout-msg").style.display = "block";
+                return false;
+            }   
+            else if (username === CorrectUser && password === CorrectPassword) {
+                alert("Login successful! Welcome, " + username + "!");
+                } 
+            else if (username === "" && password === "") {
+                alert("Please enter both username and password.")
+                return;
+                }
+            else if (username !== CorrectUser || password !== CorrectPassword) {
+                attempts++;
+                alert("Incorrect username or password. Attempt " + attempts + " of " + maxattempts + ".");
+                }
+
+            }
+        
+    
+    </script>
+
+    
+</body>
+</html>
